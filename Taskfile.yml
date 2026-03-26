@@ -1,0 +1,48 @@
+version: "3"
+
+vars:
+  BIN: hjkl
+  ENTRY: index.tsx
+
+tasks:
+  build:
+    deps: [deps]
+    cmds:
+      - bun run build.ts
+
+  install:
+    deps: [build]
+    cmds:
+      - sudo ln -sf {{.ROOT_DIR}}/bin/{{.BIN}} /usr/local/bin/{{.BIN}}
+
+  deps:
+    cmds:
+      - bun install
+
+  check:
+    deps: [deps]
+    cmds:
+      - bun x tsc --noEmit
+
+  lint:
+    deps: [deps]
+    cmds:
+      - bun x biome check src index.tsx build.ts
+
+  format:
+    deps: [deps]
+    cmds:
+      - bun x biome format --write src index.tsx build.ts
+
+  dev:
+    deps: [deps]
+    cmds:
+      - bun --preload ./src/preload.ts run {{.ENTRY}} {{.CLI_ARGS}}
+
+  reset:
+    cmds:
+      - rm -f ~/.hjkl/scores.db
+
+  clean:
+    cmds:
+      - rm -rf bin/

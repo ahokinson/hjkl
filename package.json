@@ -1,0 +1,22 @@
+{
+  "name": "hjkl",
+  "module": "index.tsx",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "@babel/core": "^7.29.0",
+    "@babel/preset-typescript": "^7.28.5",
+    "@biomejs/biome": "^2.4.9",
+    "@types/bun": "latest",
+    "babel-preset-solid": "^1.9.12"
+  },
+  "peerDependencies": {
+    "typescript": "^6.0.2"
+  },
+  "dependencies": {
+    "@catppuccin/palette": "^1.8.0",
+    "@opentui/solid": "^0.1.90",
+    "neovim": "^5.4.0",
+    "solid-js": "^1.9.12"
+  }
+}
